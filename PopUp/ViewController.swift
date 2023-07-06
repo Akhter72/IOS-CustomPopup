@@ -1,0 +1,29 @@
+//
+//  ViewController.swift
+//  PopUp
+//
+//  Created by Mac on 04/07/23.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    @IBAction func showPopup(_ sender: UIButton) {
+        let frame = sender.frame
+        let c = CustomView(frame: frame)
+        c.arcFrame = sender.frame
+        c.items = ["Hi this is Akhter and i am an IOS Developer", "Welcome to Popup Demo"]
+
+        
+        c.show()
+        view.addSubview(c)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+
+
+}
+
