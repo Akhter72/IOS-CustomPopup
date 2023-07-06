@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxl-ZS-4P3">
-                                <rect key="frame" x="276" y="387" width="75" height="35"/>
+                                <rect key="frame" x="90" y="547" width="75" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
@@ -48,12 +48,11 @@
                         <constraints>
                             <constraint firstItem="eej-of-SuS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="179" id="2dA-xV-BYE"/>
                             <constraint firstItem="rux-WN-IMT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="61M-Kx-dua"/>
-                            <constraint firstItem="mxl-ZS-4P3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="276" id="AlA-37-mjF"/>
+                            <constraint firstItem="mxl-ZS-4P3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="90" id="ToA-aA-pqn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eej-of-SuS" secondAttribute="trailing" constant="136" id="X3f-nl-cUF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mxl-ZS-4P3" secondAttribute="trailing" constant="39" id="ZP1-dR-DK1"/>
                             <constraint firstItem="eej-of-SuS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="216" id="m4P-YT-xdp"/>
                             <constraint firstItem="rux-WN-IMT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="oUz-rM-dDg"/>
-                            <constraint firstItem="mxl-ZS-4P3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="340" id="t7e-c2-vJb"/>
+                            <constraint firstItem="mxl-ZS-4P3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="500" id="rRl-3D-Qup"/>
                         </constraints>
                     </view>
                 </viewController>
