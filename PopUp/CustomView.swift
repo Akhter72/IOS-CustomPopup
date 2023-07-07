@@ -11,7 +11,7 @@ class CustomView: UIView {
     @IBOutlet weak var labelText: UILabel!
     @IBOutlet weak var infoText: UILabel!
     @IBOutlet weak var btn: UIButton!
-
+    
     override init(frame: CGRect) {
         arcFrame = frame
         print(frame)
@@ -24,12 +24,12 @@ class CustomView: UIView {
         super.init(frame: newFrame)
         commonInit()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
-
+    
     var curIndex = 0
     var items: [String] = []
     
@@ -42,16 +42,16 @@ class CustomView: UIView {
         //Adding target for the button
         btn.addTarget(self, action: #selector(hideCustomView), for: .touchUpInside)
         btn.setTitle("Next", for: .normal)
-
-//        let arrowLayer = CAShapeLayer()
-//        arrowLayer.fillColor = UIColor.green.cgColor
-//        arrowLayer.lineWidth = 1.0
-//        layer.name = "arrow"
-//        layer.addSublayer(arrowLayer)
-//        if arcFrame != nil {
-//            arrowLayer.path = createArrowPath(frame: arcFrame!, contentHeight: 200).cgPath
-////            setNeedsLayout()
-//        }
+        
+        //        let arrowLayer = CAShapeLayer()
+        //        arrowLayer.fillColor = UIColor.green.cgColor
+        //        arrowLayer.lineWidth = 1.0
+        //        layer.name = "arrow"
+        //        layer.addSublayer(arrowLayer)
+        //        if arcFrame != nil {
+        //            arrowLayer.path = createArrowPath(frame: arcFrame!, contentHeight: 200).cgPath
+        ////            setNeedsLayout()
+        //        }
     }
     
     override func layoutSubviews() {
@@ -60,48 +60,48 @@ class CustomView: UIView {
         contentView.frame.size.height = totalHeight//totalHeight
         self.frame.size.height = totalHeight//totalHeight
         contentHeight1 = totalHeight
-        self.backgroundColor = .cyan
         if arrowSide == "BOTTOM" {
             self.frame.origin.y = arcFrame.origin.y - totalHeight - 15
         } else {
             self.frame.origin.y = arcFrame.origin.y + 50
         }
         //        if let arrowLayer = layer.sublayers?.first as? CAShapeLayer {
-//        //            arrowLayer.path = createArrowPath(frame: arcFrame).cgPath
-//        //        }
-//        if let arrowLayer = layer.sublayers?.first as? CAShapeLayer{
-//            arrowLayer.path = createArrowPath(frame: arcFrame!, contentHeight: totalHeight).cgPath
-//
-//    }else{
-//
-//    }
+        //        //            arrowLayer.path = createArrowPath(frame: arcFrame).cgPath
+        //        //        }
+        //        if let arrowLayer = layer.sublayers?.first as? CAShapeLayer{
+        //            arrowLayer.path = createArrowPath(frame: arcFrame!, contentHeight: totalHeight).cgPath
+        //
+        //    }else{
+        //
+        //    }
         
-//        if let layers = layer.sublayers, layers.count > 0{
-//            for layer in layers {
-////                if layer.name == "arrow"{
-//                    if let arrowLayer = layer as? CAShapeLayer{
-//                        arrowLayer.backgroundColor = UIColor.red.cgColor
-//                        arrowLayer.path = createArrowPath(frame: arcFrame!, contentHeight: totalHeight).cgPath
-//
-//                    }
-//                    break
-////                }
-//            }
-//        }
-    
-            let arrowLayer = CAShapeLayer()
-        arrowLayer.fillColor = UIColor.blue.cgColor
-            arrowLayer.lineWidth = 1.0
-            layer.name = "arrow"
-            if let layers = layer.sublayers, layers.count > 1{
-                self.layer.sublayers?.remove(at: 1)
-            }
+        //        if let layers = layer.sublayers, layers.count > 0{
+        //            for layer in layers {
+        ////                if layer.name == "arrow"{
+        //                    if let arrowLayer = layer as? CAShapeLayer{
+        //                        arrowLayer.backgroundColor = UIColor.red.cgColor
+        //                        arrowLayer.path = createArrowPath(frame: arcFrame!, contentHeight: totalHeight).cgPath
+        //
+        //                    }
+        //                    break
+        ////                }
+        //            }
+        //        }
+        
+        let arrowLayer = CAShapeLayer()
+        arrowLayer.fillColor = UIColor.black.cgColor
+        arrowLayer.lineWidth = 0.0
+        
+        layer.name = "arrow"
+        if let layers = layer.sublayers, layers.count > 1{
+            self.layer.sublayers?.remove(at: 1)
+        }
         layer.addSublayer(arrowLayer)
         if arcFrame != nil {
             arrowLayer.path = createArrowPath(frame: arcFrame!, contentHeight: totalHeight).cgPath
         }
         
-       
+        
         super.layoutSubviews()
     }
     
@@ -136,6 +136,12 @@ class CustomView: UIView {
         var height: CGFloat = 15
         if frame.origin.x <= contentView.frame.origin.x + 30 {
             x += 30
+            
+        }
+        if frame.origin.x >= contentView.frame.origin.x + contentView.frame.size.width - 30 {
+            x = contentView.frame.size.width + contentView.frame.origin.x - 80
+            contentView.frame.origin.x = UIScreen.main.bounds.width - contentView.frame.size.width - 40
+//            self.frame.origin.x = UIScreen.main.bounds.width - contentView.frame.size.width - 20
         }
         if arrowSide == "TOP" {
             if frame.origin.x <= contentView.frame.size.width/2 {
@@ -156,7 +162,7 @@ class CustomView: UIView {
                 arrowPath.addLine(to: CGPoint(x: x, y: y))
             }
         } else {
-
+            
             y += contentHeight + 20
             x += frame.size.width/4
             if frame.origin.x <= contentView.frame.size.width/2 {
@@ -164,17 +170,15 @@ class CustomView: UIView {
                 arrowPath.addLine(to: CGPoint(x: x, y: y - 20))
                 arrowPath.addLine(to: CGPoint(x: x - 30 , y: y - 20))
                 arrowPath.addLine(to: CGPoint(x: x - 5 , y: y - 5))
+                
                 arrowPath.addQuadCurve(to: CGPoint(x: x, y: y - 5), controlPoint: CGPoint(x: x - 0.8, y: y - 1))
             } else {
-                // need to add reverse triangle if button is on right side
-//                x += width/2
-//                if frame.origin.x >= contentView.frame.size.width {
-//                    x = contentView.frame.size.width - 50
-//                }
-//                arrowPath.move(to: CGPoint(x: x, y: y))
-//                arrowPath.addLine(to: CGPoint(x: x, y: y - height))
-//                arrowPath.addLine(to: CGPoint(x: x + width, y: y))
-//                arrowPath.addLine(to: CGPoint(x: x, y: y))
+                arrowPath.move(to: CGPoint(x: x, y: y - 5))
+                arrowPath.addLine(to: CGPoint(x: x, y: y - 20))
+                arrowPath.addLine(to: CGPoint(x: x + 30 , y: y - 20))
+                arrowPath.addLine(to: CGPoint(x: x + 5 , y: y - 5))
+                
+                arrowPath.addQuadCurve(to: CGPoint(x: x, y: y - 5), controlPoint: CGPoint(x: x - 0.8, y: y - 1))
             }
         }
         arrowPath.close()
